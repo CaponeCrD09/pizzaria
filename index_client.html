@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulinho Pizzaria - Cardápio</title>
+    <link rel="stylesheet" href="./css/style_client.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header class="header-cliente">
+        <div class="container">
+            <h1>🍕 Paulinho Pizzaria</h1>
+            <p class="info">📍 Endereço: Rua das Pizzas, 123 - Centro</p>
+            <a href="https://wa.me/5516996298814" target="_blank" class="whatsapp-link">
+                <span>📱 Pedir no WhatsApp: (16) 99629-8814</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="titulo-secao">Nossas Pizzas</h2>
+
+        <div class="grid-pizzas" id="grid-pizzas">
+            
+            <div class="pizza-card">
+                <div class="pizza-img-placeholder">🍕</div>
+                <div class="pizza-info">
+                    <h3>Calabresa</h3>
+                    <p>Molho de tomate especial, mussarela, calabresa fatiada e cebola.</p>
+                    <span class="preco" id="preco_calabresa">R$ 45,00</span>
+                    <button class="btn-pedir">Adicionar ao Pedido</button>
+                </div>
+            </div>
+
+            <div class="pizza-card">
+                <div class="pizza-img-placeholder">🍕</div>
+                <div class="pizza-info">
+                    <h3>Mussarela</h3>
+                    <p>Mussarela de primeira qualidade, rodelas de tomate e orégano.</p>
+                    <span class="preco">R$ 40,00</span>
+                    <button class="btn-pedir">Adicionar ao Pedido</button>
+                </div>
+            </div>
+
+            <div class="pizza-card">
+                <div class="pizza-img-placeholder">🍕</div>
+                <div class="pizza-info">
+                    <h3>Portuguesa</h3>
+                    <p>Presunto, ovos, cebola, ervilha e cobertura de mussarela.</p>
+                    <span class="preco">R$ 50,00</span>
+                    <button class="btn-pedir">Adicionar ao Pedido</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Paulinho Pizzaria - Todos os direitos reservados.</p>
+    </footer>
+    <script src="./js/cleint.js"></script>
+</body>
+</html>

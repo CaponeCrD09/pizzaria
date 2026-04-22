@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Bella Pizza</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header>
+        <h1>⚙️ Painel de Controle</h1>
+        <nav>
+            <a href="index.html" style="color: white; text-decoration: none;">Ver Loja</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="form-group admin-form-card">
+            <h3>Cadastrar Novo Sabor</h3>
+            <form id="form-add">
+                <div class="input-group">
+                    <label for="nome">Nome da Pizza</label>
+                    <input type="text" id="nome" placeholder="Ex: Calabresa Especial" required>
+                </div>
+                <div class="input-group">
+                    <label for="desc">Ingredientes / Descrição</label>
+                    <input type="text" id="desc" placeholder="Ex: Molho, mussarela e calabresa" required>
+                </div>
+                <div class="input-group">
+                    <label for="preco">Preço (R$)</label>
+                    <input type="number" id="preco" step="0.01" placeholder="Ex: 45.90" required>
+                </div>
+                <button type="submit" id="btn-salvar">Adicionar ao Cardápio</button>
+            </form>
+        </section>
+
+        <section class="form-group admin-table-container">
+            <h3>Sabores Atuais</h3>
+            <div style="overflow-x: auto;">
+                <table id="tabela-pizzas" class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th style="text-align: center;">Ações</th> </tr>
+                    </thead>
+                    <tbody id="lista-admin-pizzas">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script src="./js/adm.js"></script>
+</body>
+</html>

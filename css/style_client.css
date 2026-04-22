@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+.header-cliente {
+    background-color: #d32f2f; /* Vermelho Pizza */
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 5px solid #ffc107; /* Amarelo Queijo */
+}
+
+.header-cliente h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.whatsapp-link {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #25d366;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.whatsapp-link:hover {
+    transform: scale(1.05);
+}
+
+/* Grade de Pizzas */
+.titulo-secao {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 1.8rem;
+}
+
+.grid-pizzas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Estilo do Card */
+.pizza-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: translateY 0.3s;
+}
+
+.pizza-card:hover {
+    transform: translateY(-5px);
+}
+
+.pizza-img-placeholder {
+    background-color: #eee;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+.pizza-info {
+    padding: 20px;
+}
+
+.pizza-info h3 {
+    margin-bottom: 10px;
+}
+
+.pizza-info p {
+    font-size: 0.9rem;
+    color: #666;
+    height: 60px; /* Garante que os cards fiquem alinhados */
+    overflow: hidden;
+}
+
+.preco {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d32f2f;
+    margin: 15px 0;
+}
+
+.btn-pedir {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-pedir:hover {
+    background-color: #ffa000;
+}
