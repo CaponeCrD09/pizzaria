@@ -9,6 +9,8 @@ const ingredientes = document.getElementById("desc");
 const preco = document.getElementById("preco");
 const btnSalvar = document.getElementById("btn-salvar");
 
+let idPizzaEdicao = null;
+
 async function addPizzas(event){
     event.preventDefault();
 
@@ -30,26 +32,59 @@ async function addPizzas(event){
         return;
     }
 
-    // --- ENVIO PARA O SUPABASE ---
-    const { data, error } = await serverSupabase
-        .from("pizzas")
-        .insert([{
-            nome: nomePizza,
-            descricao: ingredientesPizza,
-            preco: parseFloat(precoPizza)
-        }]);
+    if (idPizzaEdicao) {
+        // --- ATUALIZAÇÃO NO SUPABASE ---
+        const { data, error } = await serverSupabase
+            .from("pizzas")
+            .update({
+                nome: nomePizza,
+                descricao: ingredientesPizza,
+                preco: parseFloat(precoPizza)
+            })
+            .eq("id", idPizzaEdicao);
 
-    // --- RESPOSTA DO SERVIDOR ---
-    if (error) {
-        console.error("Erro detalhado:", error);
-        alert("Erro ao salvar no banco: " + error.message);
+        if (error) {
+            console.error("Erro detalhado:", error);
+            alert("Erro ao atualizar no banco: " + error.message);
+        } else {
+            alert("Pizza atualizada com sucesso!");
+
+            // LIMPEZA DOS CAMPOS
+            nome.value = "";
+            ingredientes.value = ""; 
+            preco.value = "";
+            
+            // RESETAR ESTADO DE EDIÇÃO
+            idPizzaEdicao = null;
+            btnSalvar.textContent = "Adicionar ao Cardápio";
+            document.querySelector(".admin-form-card h3").textContent = "Cadastrar Novo Sabor";
+
+            listarPizzas(); // Atualiza a tabela
+        }
     } else {
-        alert("Pizza adicionada com sucesso!");
+        // --- ENVIO PARA O SUPABASE ---
+        const { data, error } = await serverSupabase
+            .from("pizzas")
+            .insert([{
+                nome: nomePizza,
+                descricao: ingredientesPizza,
+                preco: parseFloat(precoPizza)
+            }]);
 
-        // LIMPEZA DOS CAMPOS (Agora dentro do sucesso)
-        nome.value = "";
-        ingredientes.value = ""; 
-        preco.value = "";        
+        // --- RESPOSTA DO SERVIDOR ---
+        if (error) {
+            console.error("Erro detalhado:", error);
+            alert("Erro ao salvar no banco: " + error.message);
+        } else {
+            alert("Pizza adicionada com sucesso!");
+
+            // LIMPEZA DOS CAMPOS (Agora dentro do sucesso)
+            nome.value = "";
+            ingredientes.value = ""; 
+            preco.value = "";        
+
+            listarPizzas(); // Atualiza a tabela
+        }
     }
 }
 
@@ -76,10 +111,36 @@ async function listarPizzas() {
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td>${pizza.nome}</td>
-            <td>${pizza.preco}</td>
+            <td>R$ ${Number(pizza.preco).toFixed(2)}</td>
+            <td style="text-align: center;" class="acoes-td"></td>
         `;
+        
+        // Botão de Atualizar
+        const btnEditar = document.createElement("button");
+        btnEditar.textContent = "Atualizar";
+        btnEditar.style.cursor = "pointer";
+        btnEditar.style.padding = "5px 10px";
+        btnEditar.style.backgroundColor = "#ffc107";
+        btnEditar.style.color = "#000";
+        btnEditar.style.border = "none";
+        btnEditar.style.borderRadius = "4px";
+        btnEditar.onclick = () => editarPizza(pizza);
+        
+        tr.querySelector(".acoes-td").appendChild(btnEditar);
         listaPizzas.appendChild(tr);
     });
+}
+
+function editarPizza(pizza) {
+    idPizzaEdicao = pizza.id;
+    nome.value = pizza.nome;
+    ingredientes.value = pizza.descricao;
+    preco.value = pizza.preco;
+    
+    btnSalvar.textContent = "Atualizar Pizza";
+    document.querySelector(".admin-form-card h3").textContent = "Atualizar Sabor";
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 listarPizzas();

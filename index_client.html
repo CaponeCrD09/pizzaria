@@ -30,8 +30,12 @@
                 <div class="pizza-info">
                     <h3>Calabresa</h3>
                     <p>Molho de tomate especial, mussarela, calabresa fatiada e cebola.</p>
-                    <span class="preco" id="preco_calabresa">R$ 45,00</span>
-                    <button class="btn-pedir">Adicionar ao Pedido</button>
+                    <span class="preco" id="preco_calabresa" data-preco="45">R$ 45,00</span>
+                    <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
+                        <option value="Inteira">Inteira (1/1)</option>
+                        <option value="Meia">Meia (1/2)</option>
+                    </select>
+                    <button class="btn-pedir" data-nome="Calabresa" data-preco="45">Adicionar ao Pedido</button>
                 </div>
             </div>
 
@@ -40,8 +44,12 @@
                 <div class="pizza-info">
                     <h3>Mussarela</h3>
                     <p>Mussarela de primeira qualidade, rodelas de tomate e orégano.</p>
-                    <span class="preco">R$ 40,00</span>
-                    <button class="btn-pedir">Adicionar ao Pedido</button>
+                    <span class="preco" data-preco="40">R$ 40,00</span>
+                    <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
+                        <option value="Inteira">Inteira (1/1)</option>
+                        <option value="Meia">Meia (1/2)</option>
+                    </select>
+                    <button class="btn-pedir" data-nome="Mussarela" data-preco="40">Adicionar ao Pedido</button>
                 </div>
             </div>
 
@@ -50,8 +58,12 @@
                 <div class="pizza-info">
                     <h3>Portuguesa</h3>
                     <p>Presunto, ovos, cebola, ervilha e cobertura de mussarela.</p>
-                    <span class="preco">R$ 50,00</span>
-                    <button class="btn-pedir">Adicionar ao Pedido</button>
+                    <span class="preco" data-preco="50">R$ 50,00</span>
+                    <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
+                        <option value="Inteira">Inteira (1/1)</option>
+                        <option value="Meia">Meia (1/2)</option>
+                    </select>
+                    <button class="btn-pedir" data-nome="Portuguesa" data-preco="50">Adicionar ao Pedido</button>
                 </div>
             </div>
 
@@ -61,6 +73,33 @@
     <footer>
         <p>&copy; 2026 Paulinho Pizzaria - Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Ícone do Carrinho Flutuante -->
+    <div id="icone-carrinho" style="position: fixed; bottom: 20px; right: 20px; background-color: #d32f2f; color: white; border-radius: 50%; width: 60px; height: 60px; display: none; align-items: center; justify-content: center; font-size: 1.8rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1001; transition: transform 0.2s;">
+        🛒
+        <span id="contador-carrinho" style="position: absolute; top: -5px; right: -5px; background: #ffc107; color: #000; font-size: 0.9rem; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">0</span>
+    </div>
+
+    <!-- Carrinho Flutuante -->
+    <div id="carrinho-flutuante" style="position: fixed; bottom: 90px; right: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); width: 320px; display: none; z-index: 1000; max-height: 80vh; overflow-y: auto;">
+        <h3 style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">🛒 Seu Pedido</h3>
+        <ul id="lista-carrinho" style="list-style: none; margin-bottom: 15px; max-height: 150px; overflow-y: auto; font-size: 0.9rem;"></ul>
+        <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10px;">Total: R$ <span id="total-carrinho">0,00</span></p>
+        
+        <div style="margin-bottom: 15px; font-size: 0.9rem;">
+            <input type="text" id="endereco-rua" placeholder="Nome da Rua" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;">
+            <input type="text" id="endereco-numero" placeholder="Número da Casa" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;">
+            <select id="forma-pagamento" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="" disabled selected>Forma de Pagamento</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Pix">Pix</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+            </select>
+        </div>
+
+        <button id="btn-finalizar-pedido" style="width: 100%; padding: 10px; background-color: #25d366; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Enviar para WhatsApp 📱</button>
+    </div>
     <script src="./js/cleint.js"></script>
 </body>
 </html>
