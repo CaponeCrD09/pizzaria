@@ -163,7 +163,7 @@ if (btnFinalizar) {
         const mensagemCodificada = encodeURIComponent(textoMensagem);
         
         // O número de WhatsApp da Pizzaria
-        const numeroWhatsApp = "551633714900";
+        const numeroWhatsApp = "5516996298814";
         
         // Cria a URL usando a API oficial que é mais estável para textos
         const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensagemCodificada}`;
