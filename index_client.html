@@ -13,7 +13,7 @@
     <header class="header-cliente">
         <div class="container">
             <h1>🍕 Paulinho Pizzaria</h1>
-            <p class="info">📍 Endereço: Rua das Pizzas, 123 - Centro</p>
+            <p class="info">📍 Endereço: Rua jesuino de arruda, 3042 - Centro</p>
             <a href="https://wa.me/551633714900" target="_blank" class="whatsapp-link">
                 <span>📱 Pedir no WhatsApp: (16) 3371-4900</span>
             </a>
@@ -29,7 +29,7 @@
                 <div class="pizza-img-placeholder">🍕</div>
                 <div class="pizza-info">
                     <h3>Calabresa</h3>
-                    <p>Molho de tomate especial, mussarela, calabresa fatiada e cebola.</p>
+                    <p id="descricao_pizza_calabresa">Molho de tomate especial, mussarela, calabresa fatiada e cebola.</p>
                     <span class="preco" id="preco_calabresa" data-preco="45">R$ 45,00</span>
                     <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
                         <option value="Inteira">Inteira (1/1)</option>
@@ -42,23 +42,65 @@
             <div class="pizza-card">
                 <div class="pizza-img-placeholder">🍕</div>
                 <div class="pizza-info">
-                    <h3>Mussarela</h3>
-                    <p>Mussarela de primeira qualidade, rodelas de tomate e orégano.</p>
-                    <span class="preco" data-preco="40">R$ 40,00</span>
+                    <h3>Alface</h3>
+                    <p id="descricao-pizza_alface">Mussarela de primeira qualidade, rodelas de tomate e orégano.</p>
+                    <span class="preco" id="preco_alface" data-preco="40">R$ 40,00</span>
                     <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
                         <option value="Inteira">Inteira (1/1)</option>
                         <option value="Meia">Meia (1/2)</option>
                     </select>
-                    <button class="btn-pedir" data-nome="Mussarela" data-preco="40">Adicionar ao Pedido</button>
+                    <button class="btn-pedir" data-nome="Alface" data-preco="40">Adicionar ao Pedido</button>
                 </div>
             </div>
 
             <div class="pizza-card">
                 <div class="pizza-img-placeholder">🍕</div>
                 <div class="pizza-info">
-                    <h3>Portuguesa</h3>
-                    <p>Presunto, ovos, cebola, ervilha e cobertura de mussarela.</p>
-                    <span class="preco" data-preco="50">R$ 50,00</span>
+                    <h3>Atum</h3>
+                    <p id="descricao_pizza_atum">Presunto, ovos, cebola, ervilha e cobertura de mussarela.</p>
+                    <span class="preco" id="preco_atum" data-preco="50">R$ 50,00</span>
+                    <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
+                        <option value="Inteira">Inteira (1/1)</option>
+                        <option value="Meia">Meia (1/2)</option>
+                    </select>
+                    <button class="btn-pedir" data-nome="Portuguesa" data-preco="50">Adicionar ao Pedido</button>
+                </div>
+            </div>
+            <!-- mais pizzas-->
+                         <div class="pizza-card">
+                <div class="pizza-img-placeholder">🍕</div>
+                <div class="pizza-info">
+                    <h3>Aliche</h3>
+                    <p id="descricao_pizza_aliche">Molho de tomate especial, mussarela, calabresa fatiada e cebola.</p>
+                    <span class="preco" id="preco_aliche" data-preco="45">R$ 45,00</span>
+                    <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
+                        <option value="Inteira">Inteira (1/1)</option>
+                        <option value="Meia">Meia (1/2)</option>
+                    </select>
+                    <button class="btn-pedir" data-nome="Calabresa" data-preco="45">Adicionar ao Pedido</button>
+                </div>
+            </div>
+
+            <div class="pizza-card">
+                <div class="pizza-img-placeholder">🍕</div>
+                <div class="pizza-info">
+                    <h3>Alho Poró</h3>
+                    <p id="descricao_pizza_alho_poro">Mussarela de primeira qualidade, rodelas de tomate e orégano.</p>
+                    <span class="preco" id="preco_alho_poro" data-preco="40">R$ 40,00</span>
+                    <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
+                        <option value="Inteira">Inteira (1/1)</option>
+                        <option value="Meia">Meia (1/2)</option>
+                    </select>
+                    <button class="btn-pedir" data-nome="Alface" data-preco="40">Adicionar ao Pedido</button>
+                </div>
+            </div>
+
+            <div class="pizza-card">
+                <div class="pizza-img-placeholder">🍕</div>
+                <div class="pizza-info">
+                    <h3>Bacon</h3>
+                    <p id="descricao_pizza_bacon">Presunto, ovos, cebola, ervilha e cobertura de mussarela.</p>
+                    <span class="preco" id="preco_bacon" data-preco="50">R$ 50,00</span>
                     <select class="tamanho-pizza" style="margin-bottom: 10px; padding: 5px; width: 100%; border-radius: 5px;">
                         <option value="Inteira">Inteira (1/1)</option>
                         <option value="Meia">Meia (1/2)</option>
