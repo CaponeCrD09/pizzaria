@@ -196,6 +196,81 @@ async function pegarValorBacon(){
     }
 }
 
+async function pegarValorBaiana(){
+    const {data,error} = await serverSupabase
+        .from("pizzas")
+        .select("preco")
+        .eq("id",41)
+        .single();
+    if(data){
+        const spanPreco = document.getElementById("preco_baiana");
+        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
+            style:"currency",
+            currency:"BRL"
+        });
+        spanPreco.textContent = precoFormatado;
+    }
+    const {data:data2,error:error2} = await serverSupabase
+        .from("pizzas")
+        .select("descricao")
+        .eq("id",41)
+        .single();
+    if(data2){
+        const spanDescricao = document.getElementById("descricao_pizza_baiana");
+        spanDescricao.textContent = data2.descricao;
+    }
+}
+
+async function pegarValorBatataFrita(){
+    const {data,error} = await serverSupabase
+        .from("pizzas")
+        .select("preco")
+        .eq("id",42)
+        .single();
+    if(data){
+        const spanPreco = document.getElementById("preco_batata_frita");
+        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
+            style:"currency",
+            currency:"BRL"
+        });
+        spanPreco.textContent = precoFormatado;
+    }
+    const {data:data2,error:error2} = await serverSupabase
+        .from("pizzas")
+        .select("descricao")
+        .eq("id",42)
+        .single();
+    if(data2){
+        const spanDescricao = document.getElementById("descricao_pizza_batata_frita");
+        spanDescricao.textContent = data2.descricao;
+    }
+}
+
+async function pegarValorBauru(){
+    const {data,error} = await serverSupabase
+        .from("pizzas")
+        .select("preco")
+        .eq("id",43)
+        .single();
+    if(data){
+        const spanPreco = document.getElementById("preco_bauru");
+        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
+            style:"currency",
+            currency:"BRL"
+        });
+        spanPreco.textContent = precoFormatado;
+    }
+    const {data:data2,error:error2} = await serverSupabase
+        .from("pizzas")
+        .select("descricao")
+        .eq("id",43)
+        .single();
+    if(data2){
+        const spanDescricao = document.getElementById("descricao_pizza_bauru");
+        spanDescricao.textContent = data2.descricao;
+    }
+}
+
 // 4. Executa a função ao carregar a página
 pegarValorCalabresa();
 pegarValorAlface();
@@ -203,7 +278,9 @@ pegarValorAtum();
 pegarValorAliche();
 pegarValorAlhoPoró();
 pegarValorBacon();
-
+pegarValorBaiana();
+pegarValorBatataFrita();
+pegarValorBauru();
 
 // --- LÓGICA DO CARRINHO DE COMPRAS ---
 let pedido = [];
