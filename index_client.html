@@ -87,8 +87,15 @@
         <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10px;">Total: R$ <span id="total-carrinho">0,00</span></p>
         
         <div style="margin-bottom: 15px; font-size: 0.9rem;">
-            <input type="text" id="endereco-rua" placeholder="Nome da Rua" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="text" id="endereco-numero" placeholder="Número da Casa" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;">
+            <select id="tipo-entrega" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;" onchange="toggleEndereco()">
+                <option value="" disabled selected>Tipo de Entrega</option>
+                <option value="entrega">Entrega</option>
+                <option value="retirada">Retirada no Balcão</option>
+            </select>
+            <div id="campos-endereco" style="display: none;">
+                <input type="text" id="endereco-rua" placeholder="Nome da Rua" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="text" id="endereco-numero" placeholder="Número da Casa" style="width: 100%; padding: 8px; margin-bottom: 8px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
             <select id="forma-pagamento" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
                 <option value="" disabled selected>Forma de Pagamento</option>
                 <option value="Dinheiro">Dinheiro</option>

@@ -130,18 +130,40 @@ window.removerDoCarrinho = function(index) {
     atualizarCarrinho();
 };
 
+// Alterna a exibição dos campos de endereço
+window.toggleEndereco = function() {
+    const tipo = document.getElementById('tipo-entrega').value;
+    const camposEndereco = document.getElementById('campos-endereco');
+    if (tipo === 'entrega') {
+        camposEndereco.style.display = 'block';
+    } else {
+        camposEndereco.style.display = 'none';
+    }
+};
+
 // Lógica de finalizar pedido e enviar para WhatsApp
 const btnFinalizar = document.getElementById('btn-finalizar-pedido');
 if (btnFinalizar) {
     btnFinalizar.addEventListener('click', function() {
         if (pedido.length === 0) return;
 
+        const tipoEntrega = document.getElementById('tipo-entrega').value;
         const rua = document.getElementById('endereco-rua').value.trim();
         const numero = document.getElementById('endereco-numero').value.trim();
         const pagamento = document.getElementById('forma-pagamento').value;
 
-        if (!rua || !numero || !pagamento) {
-            alert("Por favor, preencha a rua, o número e a forma de pagamento para finalizar o pedido.");
+        if (!tipoEntrega) {
+            alert("Por favor, selecione se será Entrega ou Retirada no Balcão.");
+            return;
+        }
+
+        if (tipoEntrega === 'entrega' && (!rua || !numero)) {
+            alert("Por favor, preencha a rua e o número para entrega.");
+            return;
+        }
+
+        if (!pagamento) {
+            alert("Por favor, selecione a forma de pagamento para finalizar o pedido.");
             return;
         }
 
@@ -155,8 +177,14 @@ if (btnFinalizar) {
         });
 
         textoMensagem += `\n*Total:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
-        textoMensagem += `\n*Endereço para Entrega:*`;
-        textoMensagem += `\nRua: ${rua}, Nº ${numero}`;
+        
+        if (tipoEntrega === 'entrega') {
+            textoMensagem += `\n*Endereço para Entrega:*`;
+            textoMensagem += `\nRua: ${rua}, Nº ${numero}`;
+        } else {
+            textoMensagem += `\n*Retirada no Balcão*`;
+        }
+        
         textoMensagem += `\n*Forma de Pagamento:* ${pagamento}`;
 
         // Codifica a mensagem para formato de URL
