@@ -67,7 +67,7 @@ async function pegarDadosProdutos(id_produto) {
 
 for(let i = 1; i <= 1000; i++){
     pegarDadosProdutos(i);
-    await espera(200); // Espera 200ms entre cada requisição para evitar sobrecarga
+    await espera(50)
 }
 
 
