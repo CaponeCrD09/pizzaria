@@ -65,18 +65,18 @@ async function pegarDadosProdutos(id_produto) {
     }
 }
 
-async function espera() {
+const sleep = ms => new Promise(res => setTimeout(res, ms));
 
+async function espera() {
     for(let i = 1; i <= 100; i++){
         pegarDadosProdutos(i);
 
-        let delay_ = 50;
-        await delay_(50);
+        // 2. Agora o await funciona corretamente chamando a função sleep
+        await sleep(50); 
     }
 }
 
 espera();
-
 
 // --- LÓGICA DO CARRINHO DE COMPRAS ---
 let pedido = [];
