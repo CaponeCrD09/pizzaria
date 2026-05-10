@@ -8,85 +8,41 @@ async function pegarDadosProdutos(id_produto) {
     
     let converter_id = id_produto.toString();
 
-
-
-    const {data: data3, error: error3} = await serverSupabase
-        .from("pizzas")
-        .select("nome")
-        .eq("id", id_produto)
-        .single();
-
-    if(data3){
-        const nomeProduto = document.getElementById("nome_produto_" + converter_id);
-        nomeProduto.textContent = data3.nome;
-
-        const btnPedir = document.querySelector('.btn-pedir[data-nome="produto"]');
-        btnPedir.setAttribute('data-nome', data3.nome);
-    }
-
-    
-    // 1. Buscamos apenas o preço da pizza com ID 35
     const { data, error } = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id", id_produto)
-        .single(); // Pega o objeto direto
-
-    // 2. Se houver erro (Ex: ID 35 não existe mais)
-    if (error) {
-        console.error("Erro ao buscar preço:", error.message);
-        return;
-    }
-
-    
-    if (data) {
-        const spanPreco = document.getElementById("preco_" + converter_id);
-
-        // Transformamos o número em formato de moeda Brasileira (R$ 45,00)
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br', {
-            style: 'currency',
-            currency: 'BRL'
-        });
-
-        spanPreco.textContent = precoFormatado;
-
-        // Atualiza o data-preco no botão da Calabresa para o carrinho funcionar com o preço real
-        const btnNome = document.querySelector('button[data-nome="produto"]');
-        if (btnNome) {
-            btnNome.setAttribute('data-nome', data.nome);
-        }
-
-        const btnPedir_preco = document.querySelector('button[data-preco="0"]');
-        if (btnPedir_preco) {
-            btnPedir_preco.setAttribute('data-preco', data.preco);
-        }
-    }
-
-    
-    const { data: data2, error: error2 } = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id", id_produto)
+        .from('pizzas')
+        .select('*')
+        .eq('id',id_produto)
         .single();
-    if (data2) {
-        const spanPreco = document.getElementById("descricao_" + converter_id);
-        spanPreco.textContent = data2.descricao;
-    }
+
+        if(data){
+            let nomeDom = document.getElementById('nome_produto_'+converter_id);
+            nomeDom.textContent = data.nome;
+
+            let descricaoDom = document.getElementById('descricao_produto_'+converter_id);
+            descricaoDom.textContent = data.descricao;
+
+            let precoDom = document.getElementById('preco_produto_'+converter_id);
+            precoDom.textContent = `R$ ${data.preco.toFixed(2).replace('.', ',')}`;
+
+            let btnNome = document.querySelector('.btn-pedir[data-nome="produto"]');
+            btnNome.setAttribute('data-nome', data.nome);
+
+            let btnPreco = document.querySelector('.btn-pedir[data-preco="0"]');
+            btnPreco.setAttribute('data-preco', data.preco);
+        }
 }
 
-const sleep = ms => new Promise(res => setTimeout(res, ms));
 
-async function espera() {
-    
-    
-    for(let i = 34; i <= 50; i++){
-        pegarDadosProdutos(i);
-        await sleep(5000); // Espera 500ms entre cada requisição para evitar sobrecarga
+const tempoEspera = ms => new Promise(res => setTimeout(res, ms));
 
+async function carregarProdutos() {
+
+    for (let i = 34; i <= 100; i++) {
+        await pegarDadosProdutos(i);
+        await tempoEspera(100); // Espera 100ms entre cada requisição
     }
 }
-
-espera();
+carregarProdutos();
 
 // --- LÓGICA DO CARRINHO DE COMPRAS ---
 let pedido = [];
