@@ -72,7 +72,7 @@ async function espera() {
         pegarDadosProdutos(i);
 
         // 2. Agora o await funciona corretamente chamando a função sleep
-        await sleep(50); 
+        await sleep(200); 
     }
 }
 
