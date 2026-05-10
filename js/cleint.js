@@ -49,9 +49,14 @@ async function pegarDadosProdutos(id_produto) {
         spanPreco.textContent = precoFormatado;
 
         // Atualiza o data-preco no botão da Calabresa para o carrinho funcionar com o preço real
-        const btnCalabresa = document.querySelector('button[data-nome="Calabresa"]');
-        if (btnCalabresa) {
-            btnCalabresa.setAttribute('data-preco', data.preco);
+        const btnNome = document.querySelector('button[data-nome="produto"]');
+        if (btnNome) {
+            btnNome.setAttribute('data-nome', data.nome);
+        }
+
+        const btnPedir_preco = document.querySelector('button[data-preco="0"]');
+        if (btnPedir_preco) {
+            btnPedir_preco.setAttribute('data-preco', data.preco);
         }
     }
     const { data: data2, error: error2 } = await serverSupabase
@@ -68,11 +73,11 @@ async function pegarDadosProdutos(id_produto) {
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function espera() {
-    for(let i = 1; i <= 100; i++){
+    for(let i = 34; i <= 100; i++){
         pegarDadosProdutos(i);
 
         // 2. Agora o await funciona corretamente chamando a função sleep
-        await sleep(300); 
+        await sleep(500); 
     }
 }
 
