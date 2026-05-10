@@ -23,6 +23,8 @@ async function pegarDadosProdutos(id_produto) {
         const btnPedir = document.querySelector('.btn-pedir[data-nome="produto"]');
         btnPedir.setAttribute('data-nome', data3.nome);
     }
+
+    
     // 1. Buscamos apenas o preço da pizza com ID 35
     const { data, error } = await serverSupabase
         .from("pizzas")
@@ -36,7 +38,7 @@ async function pegarDadosProdutos(id_produto) {
         return;
     }
 
-    // 3. Se os dados existirem, atualizamos o SPAN
+    
     if (data) {
         const spanPreco = document.getElementById("preco_" + converter_id);
 
@@ -59,6 +61,8 @@ async function pegarDadosProdutos(id_produto) {
             btnPedir_preco.setAttribute('data-preco', data.preco);
         }
     }
+
+    
     const { data: data2, error: error2 } = await serverSupabase
         .from("pizzas")
         .select("descricao")
@@ -73,11 +77,12 @@ async function pegarDadosProdutos(id_produto) {
 const sleep = ms => new Promise(res => setTimeout(res, ms));
 
 async function espera() {
-    for(let i = 34; i <= 100; i++){
+    
+    
+    for(let i = 34; i <= 50; i++){
         pegarDadosProdutos(i);
+        await sleep(5000); // Espera 500ms entre cada requisição para evitar sobrecarga
 
-        // 2. Agora o await funciona corretamente chamando a função sleep
-        await sleep(500); 
     }
 }
 
