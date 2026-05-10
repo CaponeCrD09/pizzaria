@@ -4,12 +4,30 @@ const chaveSupabase = "sb_publishable_VrOzm8fbWAGjQlHFdg022w_VIYW_Mgv";
 
 const serverSupabase = supabase.createClient(hrlSupabase, chaveSupabase);
 
-async function pegarValorCalabresa() {
+async function pegarDadosProdutos(id_produto) {
+    
+    let converter_id = id_produto.toString();
+
+
+
+    const {data: data3, error: error3} = await serverSupabase
+        .from("pizzas")
+        .select("nome")
+        .eq("id", id_produto)
+        .single();
+
+    if(data3){
+        const nomeProduto = document.getElementById("nome_produto_" + converter_id);
+        nomeProduto.textContent = data3.nome;
+
+        const btnPedir = document.querySelector('.btn-pedir[data-nome="produto"]');
+        btnPedir.setAttribute('data-nome', data3.nome);
+    }
     // 1. Buscamos apenas o preço da pizza com ID 35
     const { data, error } = await serverSupabase
         .from("pizzas")
         .select("preco")
-        .eq("id", 49)
+        .eq("id", id_produto)
         .single(); // Pega o objeto direto
 
     // 2. Se houver erro (Ex: ID 35 não existe mais)
@@ -20,7 +38,7 @@ async function pegarValorCalabresa() {
 
     // 3. Se os dados existirem, atualizamos o SPAN
     if (data) {
-        const spanPreco = document.getElementById("preco_calabresa");
+        const spanPreco = document.getElementById("preco_" + converter_id);
 
         // Transformamos o número em formato de moeda Brasileira (R$ 45,00)
         const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br', {
@@ -39,248 +57,18 @@ async function pegarValorCalabresa() {
     const { data: data2, error: error2 } = await serverSupabase
         .from("pizzas")
         .select("descricao")
-        .eq("id", 49)
+        .eq("id", id_produto)
         .single();
     if (data2) {
-        const spanPreco = document.getElementById("descricao_pizza_calabresa");
+        const spanPreco = document.getElementById("descricao_" + converter_id);
         spanPreco.textContent = data2.descricao;
     }
 }
 
-async function pegarValorAlface() {
-    // 1. Buscamos apenas o preço da pizza com ID 35
-    const { data, error } = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id", 35)
-        .single(); // Pega o objeto direto
-
-    // 2. Se houver erro (Ex: ID 35 não existe mais)
-    if (error) {
-        console.error("Erro ao buscar preço:", error.message);
-        return;
-    }
-
-    // 3. Se os dados existirem, atualizamos o SPAN
-    if (data) {
-        const spanPreco = document.getElementById("preco_alface");
-
-        // Transformamos o número em formato de moeda Brasileira (R$ 45,00)
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br', {
-            style: 'currency',
-            currency: 'BRL'
-        });
-
-        spanPreco.textContent = precoFormatado;
-
-        // Atualiza o data-preco no botão da Calabresa para o carrinho funcionar com o preço real
-        const btnCalabresa = document.querySelector('button[data-nome="Alface"]');
-        if (btnCalabresa) {
-            btnCalabresa.setAttribute('data-preco', data.preco);
-        }
-    }   
-    const { data: data2, error: error2 } = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id", 35)
-        .single();
-    if (data2) {
-        const spanDescricao = document.getElementById("descricao-pizza_alface");
-        spanDescricao.textContent = data2.descricao;
-    }
-    
+for(let i = 1; i <= 1000; i++){
+    pegarDadosProdutos(i);
 }
 
-async function pegarValorAtum(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",37)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_atum");
-        let precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    if(error){
-        console.error("Erro ao buscar preço", error.message);
-        return;
-    }
-    const { data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",37)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao_pizza_atum");
-        spanDescricao.textContent = data2.descricao;
-    }
-    
-}
-
-async function pegarValorAliche(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",39)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_aliche");
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    const {data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",39)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao_pizza_aliche");
-        spanDescricao.textContent = data2.descricao;
-    }
-}
-
-async function pegarValorAlhoPoró(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",39)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_alho_poro");
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    const {data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",39)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao-pizza_alho_poro");
-        spanDescricao.textContent = data2.descricao;
-    }
-}
-
-async function pegarValorBacon(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",40)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_bacon");
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    const {data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",40)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao_pizza_bacon");
-        spanDescricao.textContent = data2.descricao;
-    }
-}
-
-async function pegarValorBaiana(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",41)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_baiana");
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    const {data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",41)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao_pizza_baiana");
-        spanDescricao.textContent = data2.descricao;
-    }
-}
-
-async function pegarValorBatataFrita(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",42)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_batata_frita");
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    const {data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",42)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao_pizza_batata_frita");
-        spanDescricao.textContent = data2.descricao;
-    }
-}
-
-async function pegarValorBauru(){
-    const {data,error} = await serverSupabase
-        .from("pizzas")
-        .select("preco")
-        .eq("id",43)
-        .single();
-    if(data){
-        const spanPreco = document.getElementById("preco_bauru");
-        const precoFormatado = parseFloat(data.preco).toLocaleString('pt-br',{
-            style:"currency",
-            currency:"BRL"
-        });
-        spanPreco.textContent = precoFormatado;
-    }
-    const {data:data2,error:error2} = await serverSupabase
-        .from("pizzas")
-        .select("descricao")
-        .eq("id",43)
-        .single();
-    if(data2){
-        const spanDescricao = document.getElementById("descricao_pizza_bauru");
-        spanDescricao.textContent = data2.descricao;
-    }
-}
-
-// 4. Executa a função ao carregar a página
-pegarValorCalabresa();
-pegarValorAlface();
-pegarValorAtum();
-pegarValorAliche();
-pegarValorAlhoPoró();
-pegarValorBacon();
-pegarValorBaiana();
-pegarValorBatataFrita();
-pegarValorBauru();
 
 // --- LÓGICA DO CARRINHO DE COMPRAS ---
 let pedido = [];
