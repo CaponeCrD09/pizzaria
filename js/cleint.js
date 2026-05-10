@@ -69,7 +69,9 @@ async function espera() {
 
     for(let i = 1; i <= 100; i++){
         pegarDadosProdutos(i);
-        await espera(50)
+
+        let delay = 50;
+        await delay(50)
     }
 }
 
