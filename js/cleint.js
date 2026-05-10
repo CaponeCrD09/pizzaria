@@ -67,7 +67,7 @@ async function pegarDadosProdutos(id_produto) {
 
 for(let i = 1; i <= 1000; i++){
     pegarDadosProdutos(i);
-    await new Promise(resolve => setTimeout(resolve, 100)); // Pequena pausa para evitar sobrecarga no Supabase
+    await espera(200); // Espera 200ms entre cada requisição para evitar sobrecarga
 }
 
 
