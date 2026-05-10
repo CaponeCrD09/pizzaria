@@ -67,7 +67,7 @@ async function pegarDadosProdutos(id_produto) {
 
 async function espera() {
 
-    for(let i = 1; i <= 1000; i++){
+    for(let i = 1; i <= 100; i++){
         pegarDadosProdutos(i);
         await espera(50)
     }
