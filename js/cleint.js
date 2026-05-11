@@ -153,6 +153,7 @@ if (btnFinalizar) {
         const rua = document.getElementById('endereco-rua').value.trim();
         const numero = document.getElementById('endereco-numero').value.trim();
         const pagamento = document.getElementById('forma-pagamento').value;
+        const observacao = document.getElementById('observacao-pedido') ? document.getElementById('observacao-pedido').value.trim() : '';
 
         if (!tipoEntrega) {
             alert("Por favor, selecione se será Entrega ou Retirada no Balcão.");
@@ -188,6 +189,10 @@ if (btnFinalizar) {
         }
 
         textoMensagem += `\n*Forma de Pagamento:* ${pagamento}`;
+
+        if (observacao) {
+            textoMensagem += `\n\n*Observações:* ${observacao}`;
+        }
 
         // Codifica a mensagem para formato de URL
         const mensagemCodificada = encodeURIComponent(textoMensagem);
